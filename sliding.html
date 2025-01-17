@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Boxes</title>
+  <style>
+    body {
+      margin: 20px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      overflow-x: hidden;
+    }
+    .slider-container {
+      display: flex;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      height: 150px;
+      background: #333;
+      color: white;
+      padding: 20px 0;
+    }
+    .slider {
+      display: flex;
+      position: absolute;
+      animation: slide 15s linear infinite;
+      gap: 40px;
+    }
+    .box {
+      flex: 0 0 200px;
+      height: 100px;
+      background: #007bff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .box:hover {
+      transform: scale(1.1); /* Slight zoom effect on hover */
+    }
+    @keyframes slide {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center; margin: 20px 0;">Sliding Boxes</h1>
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="box">THIS IS THE BOX OF WALNUTS</div>
+      <div class="box">THIS IS THE BOX OF PISTACHIO</div>
+      <div class="box">THIS IS THE BOX OF PEANUTS</div>
+      <div class="box">THIS IS THE BOX OF CASHEWS</div>
+      <div class="box">THIS IS THE BOX OF ALMONDS</div>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+
+    
+    slider.addEventListener('mouseenter', () => {
+      slider.style.animationPlayState = 'paused';
+    });
+
+    
+    slider.addEventListener('mouseleave', () => {
+      slider.style.animationPlayState = 'running';
+    });
+
+    
+    function addBox(content) {
+      const newBox = document.createElement('div');
+      newBox.className = 'box';
+      newBox.textContent = content;
+      slider.appendChild(newBox);
+    }
+
+    
+    setTimeout(() => {
+      addBox('THIS IS THE BOX of HAZELNUTS');
+      addBox('THIS IS THE BOX of MACADAMIA');
+    }, 5000);
+  </script>
+</body>
+</html>
